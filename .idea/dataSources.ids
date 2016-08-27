@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="volleybeta2.0" uuid="70342c28-d933-4951-a9ba-fe37a65e88c8">
+    <database-info product="H2" version="1.3.176 (2014-04-05)" jdbc-version="4.0" driver-name="H2 JDBC Driver" driver-version="1.3.176 (2014-04-05)">
+      <identifier-quote-string>&quot;</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="upper" quoted-identifiers="exact"/>
+    <schema name="PUBLIC" catalog="VOLLEYBETA2.0"/>
+    <table name="COMMAND" schema="PUBLIC" catalog="VOLLEYBETA2.0" type="TABLE">
+      <column name="ID" sqlType="INTEGER" precision="10" scale="0" nullable="false" jdbcType="4" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfRDBBM0FFQzJfNzNCNF80MTFBXzlDRDNfMjJFRkVBODBCNkJFKQ==" autoIncrement="true"/>
+      <column name="NAME_COMMAND" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="COACH" sqlType="VARCHAR" precision="60" scale="0" nullable="false" jdbcType="12"/>
+      <column name="SPONSOR" sqlType="VARCHAR" precision="150" scale="0" nullable="true" jdbcType="12"/>
+      <column name="SEX" sqlType="BOOLEAN" precision="1" scale="0" nullable="false" jdbcType="16"/>
+      <primary-key name="CONSTRAINT_6" columns="ID"/>
+      <exported-key name="CONSTRAINT_59A" table="CUP_COMMAND" schema="PUBLIC" catalog="VOLLEYBETA2.0" columns="ID_COMMAND"/>
+      <exported-key name="CONSTRAINT_50E0" table="GAME_COMMAND" schema="PUBLIC" catalog="VOLLEYBETA2.0" columns="ID_COMMAND"/>
+      <exported-key name="CONSTRAINT_8C" table="PLAYER" schema="PUBLIC" catalog="VOLLEYBETA2.0" columns="ID_COMMAND"/>
+    </table>
+    <table name="CUP" schema="PUBLIC" catalog="VOLLEYBETA2.0" type="TABLE">
+      <column name="ID" sqlType="INTEGER" precision="10" scale="0" nullable="false" jdbcType="4" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfNzhFNUY4RUVfNUQwM180RDU5Xzk1RDVfOTQ5MTUyMDk4MkMyKQ==" autoIncrement="true"/>
+      <column name="NAME_CUP" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
+      <column name="SPONSOR" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <column name="START_CUP" sqlType="DATE" precision="8" scale="0" nullable="false" jdbcType="91"/>
+      <column name="END_CUP" sqlType="DATE" precision="8" scale="0" nullable="false" jdbcType="91"/>
+      <primary-key name="CONSTRAINT_1" columns="ID"/>
+      <exported-key name="CONSTRAINT_59" table="CUP_COMMAND" schema="PUBLIC" catalog="VOLLEYBETA2.0" columns="ID_CUP"/>
+      <exported-key name="CONSTRAINT_21" table="GAME" schema="PUBLIC" catalog="VOLLEYBETA2.0" columns="ID_CUP"/>
+    </table>
+    <table name="CUP_COMMAND" schema="PUBLIC" catalog="VOLLEYBETA2.0" type="TABLE">
+      <column name="ID_CUP" sqlType="INTEGER" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="ID_COMMAND" sqlType="INTEGER" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="CONSTRAINT_5" columns="ID_CUP,ID_COMMAND"/>
+      <foreign-key name="CONSTRAINT_59A" columns="ID_COMMAND" ref-table="COMMAND" ref-schema="PUBLIC" ref-catalog="VOLLEYBETA2.0" ref-columns="ID" update-rule="0" delete-rule="0" deferrability="2"/>
+      <foreign-key name="CONSTRAINT_59" columns="ID_CUP" ref-table="CUP" ref-schema="PUBLIC" ref-catalog="VOLLEYBETA2.0" ref-columns="ID" update-rule="0" delete-rule="0" deferrability="2"/>
+    </table>
+    <table name="GAME" schema="PUBLIC" catalog="VOLLEYBETA2.0" type="TABLE">
+      <column name="ID" sqlType="INTEGER" precision="10" scale="0" nullable="false" jdbcType="4" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfRDAwMEM3OEFfODhFMV80RDg1X0I2RjFfNDE2RDYzREQ0Mzk3KQ==" autoIncrement="true"/>
+      <column name="DATE_GAME" sqlType="DATE" precision="8" scale="0" nullable="false" jdbcType="91"/>
+      <column name="ID_CUP" sqlType="INTEGER" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="CONSTRAINT_2" columns="ID"/>
+      <foreign-key name="CONSTRAINT_21" columns="ID_CUP" ref-table="CUP" ref-schema="PUBLIC" ref-catalog="VOLLEYBETA2.0" ref-columns="ID" update-rule="0" delete-rule="0" deferrability="2"/>
+      <exported-key name="CONSTRAINT_50E" table="GAME_COMMAND" schema="PUBLIC" catalog="VOLLEYBETA2.0" columns="ID_GAME"/>
+      <exported-key name="CONSTRAINT_26F" table="STAT" schema="PUBLIC" catalog="VOLLEYBETA2.0" columns="ID_GAME"/>
+    </table>
+    <table name="GAME_COMMAND" schema="PUBLIC" catalog="VOLLEYBETA2.0" type="TABLE">
+      <column name="ID_GAME" sqlType="INTEGER" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="ID_COMMAND" sqlType="INTEGER" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="SET_1" sqlType="INTEGER" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="SET_2" sqlType="INTEGER" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="SET_3" sqlType="INTEGER" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="SET_4" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="SET_5" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="CONSTRAINT_50" columns="ID_GAME,ID_COMMAND"/>
+      <foreign-key name="CONSTRAINT_50E0" columns="ID_COMMAND" ref-table="COMMAND" ref-schema="PUBLIC" ref-catalog="VOLLEYBETA2.0" ref-columns="ID" update-rule="0" delete-rule="0" deferrability="2"/>
+      <foreign-key name="CONSTRAINT_50E" columns="ID_GAME" ref-table="GAME" ref-schema="PUBLIC" ref-catalog="VOLLEYBETA2.0" ref-columns="ID" update-rule="0" delete-rule="0" deferrability="2"/>
+    </table>
+    <table name="PLAYER" schema="PUBLIC" catalog="VOLLEYBETA2.0" type="TABLE">
+      <column name="ID" sqlType="INTEGER" precision="10" scale="0" nullable="false" jdbcType="4" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfNkYxNjZFRjZfODAzMF80RkY4XzgwRUNfMUMwRTIyQzhDNDNBKQ==" autoIncrement="true"/>
+      <column name="NAME_PLAYER" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="SURNAME" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="PATRONYMIC" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="NUMBER" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="ID_COMMAND" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="CONSTRAINT_8" columns="ID"/>
+      <foreign-key name="CONSTRAINT_8C" columns="ID_COMMAND" ref-table="COMMAND" ref-schema="PUBLIC" ref-catalog="VOLLEYBETA2.0" ref-columns="ID" update-rule="0" delete-rule="0" deferrability="2"/>
+      <exported-key name="CONSTRAINT_26FE" table="STAT" schema="PUBLIC" catalog="VOLLEYBETA2.0" columns="ID_PLAYER"/>
+    </table>
+    <table name="STAT" schema="PUBLIC" catalog="VOLLEYBETA2.0" type="TABLE">
+      <column name="ID_GAME" sqlType="INTEGER" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="ID_PLAYER" sqlType="INTEGER" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="COLUMNPOINTTOT" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="COLUMNSERVETOT" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="COLUMNSERVEERROR" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="COLUMNSERVEPOINT" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="COLUMNRECEPTIONTOT" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="COLUMNRECEPTIONERROR" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="COLUMNRECEPTIONNICE" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="COLUMNATTACKTOT" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="COLUMNATTACKERROR" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="COLUMNATTACKPOINT" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="COLUMNBLOCKPOINT" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="CONSTRAINT_26" columns="ID_GAME,ID_PLAYER"/>
+      <foreign-key name="CONSTRAINT_26F" columns="ID_GAME" ref-table="GAME" ref-schema="PUBLIC" ref-catalog="VOLLEYBETA2.0" ref-columns="ID" update-rule="0" delete-rule="0" deferrability="2"/>
+      <foreign-key name="CONSTRAINT_26FE" columns="ID_PLAYER" ref-table="PLAYER" ref-schema="PUBLIC" ref-catalog="VOLLEYBETA2.0" ref-columns="ID" update-rule="0" delete-rule="0" deferrability="2"/>
+    </table>
+  </data-source>
+</component>

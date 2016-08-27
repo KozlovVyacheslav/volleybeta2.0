@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1360.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.controllers.GamesShow">
+   <children>
+      <AnchorPane layoutX="135.0" layoutY="196.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="900.0" AnchorPane.topAnchor="10.0">
+         <children>
+            <Button fx:id="btnBack" layoutX="100.0" layoutY="64.0" minHeight="40.0" minWidth="80.0" mnemonicParsing="false" onAction="#goBack" text="Назад" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="0.0" />
+            <TableView fx:id="tblGames" layoutX="125.0" layoutY="221.0" prefHeight="250.0" prefWidth="200.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="100.0">
+              <columns>
+                <TableColumn fx:id="clmCommand1" prefWidth="75.0" text="Команла 1" />
+                <TableColumn fx:id="clmCommand2" prefWidth="75.0" text="Команда 2" />
+                  <TableColumn fx:id="clmScore" prefWidth="75.0" text="Счет" />
+                  <TableColumn fx:id="clmDate" prefWidth="75.0" text="Дата встречи" />
+              </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+            </TableView>
+            <Label alignment="CENTER" layoutX="230.0" layoutY="22.0" minHeight="40.0" text="Игры" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0">
+               <font>
+                  <Font name="Calibri" size="20.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="205.0" layoutY="46.0" minHeight="40.0" text="МУЖСКИЕ" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="50.0">
+               <font>
+                  <Font name="Calibri" size="20.0" />
+               </font>
+            </Label>
+            <TableView fx:id="tblGames1" layoutX="129.0" layoutY="374.0" prefHeight="250.0" prefWidth="200.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+               <columns>
+                  <TableColumn fx:id="clmCommand11" prefWidth="75.0" text="Команла 1" />
+                  <TableColumn fx:id="clmCommand21" prefWidth="75.0" text="Команда 2" />
+                  <TableColumn fx:id="clmScore1" prefWidth="75.0" text="Счет" />
+                  <TableColumn fx:id="clmDate1" prefWidth="75.0" text="Дата встречи" />
+               </columns>
+            </TableView>
+            <Label alignment="CENTER" layoutX="195.0" layoutY="373.0" minHeight="40.0" text="ЖЕНСКИЕ" AnchorPane.bottomAnchor="270.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+               <font>
+                  <Font name="Calibri" size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="paneSetScore" layoutX="689.0" layoutY="207.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="500.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+         <children>
+            <TableView fx:id="tblCommand" layoutX="213.0" layoutY="153.0" prefHeight="220.0" prefWidth="200.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="90.0">
+              <columns>
+                <TableColumn fx:id="clmSurname" prefWidth="75.0" text="Фамилия" />
+                <TableColumn fx:id="clmName" prefWidth="75.0" text="Имя" />
+                  <TableColumn fx:id="clmPoints" prefWidth="50.0" text="Очки" />
+                  <TableColumn prefWidth="75.0" text="Подача">
+                     <columns>
+                        <TableColumn fx:id="clmTotServe" minWidth="-1.0" prefWidth="50.0" text="Тот" />
+                        <TableColumn fx:id="clmErroeServe" minWidth="-1.0" prefWidth="50.0" text="Ошб" />
+                        <TableColumn fx:id="clmPointsServe" prefWidth="50.0" text="Очк" />
+                     </columns>
+                  </TableColumn>
+                  <TableColumn prefWidth="75.0" text="Прием">
+                     <columns>
+                        <TableColumn fx:id="clmTotReception" prefWidth="50.0" text="Тот" />
+                        <TableColumn fx:id="clmErrorReception" prefWidth="50.0" text="Ошб" />
+                        <TableColumn fx:id="clmNiceReseption" prefWidth="50.0" text="Отл" />
+                     </columns>
+                  </TableColumn>
+                  <TableColumn prefWidth="75.0" text="Атака">
+                     <columns>
+                        <TableColumn fx:id="clmTotAttack" prefWidth="50.0" text="Тот" />
+                        <TableColumn fx:id="clmErrorAttack" prefWidth="50.0" text="Ошб" />
+                        <TableColumn fx:id="clmPointsAttack" prefWidth="50.0" text="Очк" />
+                        <TableColumn fx:id="clmPercentAttack" prefWidth="50.0" text="Очк%" />
+                     </columns>
+                  </TableColumn>
+                  <TableColumn fx:id="clmBlock" prefWidth="50.0" text="Блок" />
+              </columns>
+            </TableView>
+            <Label alignment="CENTER" layoutX="233.0" layoutY="18.0" minHeight="40.0" text="Информация о игре" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+               <font>
+                  <Font name="Calibri" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblCommand1" alignment="CENTER_RIGHT" layoutX="252.0" layoutY="31.0" minHeight="40.0" text="Команда 1" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="50.0">
+               <font>
+                  <Font name="Calibri" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblCommand2" alignment="CENTER_RIGHT" layoutX="12.0" layoutY="331.0" minHeight="40.0" text="Команда  2" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="360.0">
+               <font>
+                  <Font name="Calibri" size="20.0" />
+               </font>
+            </Label>
+            <Button fx:id="btnPlusStat1" layoutX="769.0" layoutY="143.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#goPlusStat" text="+" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="180.0" />
+            <Button fx:id="btnMinusStat1" layoutX="771.0" layoutY="205.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#goMinusStat" text="-" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="220.0" />
+            <Button fx:id="btnMinusStat2" layoutX="792.0" layoutY="491.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#goMinusStat" text="-" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="530.0" />
+            <Button fx:id="btnPlusStat2" layoutX="792.0" layoutY="451.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#goPlusStat" text="+" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="490.0" />
+            <Button fx:id="btnClear" layoutX="417.0" layoutY="615.0" minHeight="30.0" minWidth="100.0" mnemonicParsing="false" onAction="#goClear" text="Очистить" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="560.0" />
+            <Button fx:id="btnSave" layoutX="243.0" layoutY="613.0" minHeight="30.0" minWidth="100.0" mnemonicParsing="false" onAction="#goSave" text="Сохранить" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="230.0" />
+            <Button fx:id="btnEdit" layoutX="437.0" layoutY="635.0" minHeight="30.0" minWidth="100.0" mnemonicParsing="false" onAction="#goEdit" text="Редактировать" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="340.0" />
+            <Button fx:id="btnDelete" layoutX="583.0" layoutY="637.0" minHeight="30.0" minWidth="100.0" mnemonicParsing="false" onAction="#goDelete" text="Удалить" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="450.0" />
+            <Button fx:id="btnNew" layoutX="100.0" layoutY="620.0" minHeight="30.0" minWidth="100.0" mnemonicParsing="false" onAction="#goNew" text="Новая" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="120.0" />
+            <Button fx:id="btnPrint" layoutX="20.0" layoutY="603.0" minHeight="30.0" minWidth="100.0" mnemonicParsing="false" onAction="#goPrint" text="Печать" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" />
+            <TableView fx:id="tblCommand1" layoutX="223.0" layoutY="163.0" prefHeight="220.0" prefWidth="200.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="400.0">
+               <columns>
+                  <TableColumn fx:id="clmSurname1" prefWidth="75.0" text="Фамилия" />
+                  <TableColumn fx:id="clmName1" prefWidth="75.0" text="Имя" />
+                  <TableColumn fx:id="clmPoints1" prefWidth="50.0" text="Очки" />
+                  <TableColumn prefWidth="75.0" text="Подача">
+                     <columns>
+                        <TableColumn fx:id="clmTotServe1" minWidth="-1.0" prefWidth="50.0" text="Тот" />
+                        <TableColumn fx:id="clmErroeServe1" minWidth="-1.0" prefWidth="50.0" text="Ошб" />
+                        <TableColumn fx:id="clmPointsServe1" prefWidth="50.0" text="Очк" />
+                     </columns>
+                  </TableColumn>
+                  <TableColumn prefWidth="75.0" text="Прием">
+                     <columns>
+                        <TableColumn fx:id="clmTotReception1" prefWidth="50.0" text="Тот" />
+                        <TableColumn fx:id="clmErrorReception1" prefWidth="50.0" text="Ошб" />
+                        <TableColumn fx:id="clmNiceReseption1" prefWidth="50.0" text="Отл" />
+                     </columns>
+                  </TableColumn>
+                  <TableColumn prefWidth="75.0" text="Атака">
+                     <columns>
+                        <TableColumn fx:id="clmTotAttack1" prefWidth="50.0" text="Тот" />
+                        <TableColumn fx:id="clmErrorAttack1" prefWidth="50.0" text="Ошб" />
+                        <TableColumn fx:id="clmPointsAttack1" prefWidth="50.0" text="Очк" />
+                        <TableColumn fx:id="clmPercentAttack1" prefWidth="50.0" text="Очк%" />
+                     </columns>
+                  </TableColumn>
+                  <TableColumn fx:id="clmBlock1" prefWidth="50.0" text="Блок" />
+               </columns>
+            </TableView>
+            <Label layoutX="14.0" layoutY="355.0" text="1 set" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="345.0" />
+            <Label layoutX="110.0" layoutY="356.0" text="2 set" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="345.0" />
+            <Label layoutX="214.0" layoutY="355.0" text="3 set" AnchorPane.leftAnchor="190.0" AnchorPane.topAnchor="345.0" />
+            <Label layoutX="303.0" layoutY="356.0" text="4 set" AnchorPane.leftAnchor="280.0" AnchorPane.topAnchor="345.0" />
+            <Label layoutX="404.0" layoutY="356.0" text="5 set" AnchorPane.leftAnchor="370.0" AnchorPane.topAnchor="345.0" />
+            <Button fx:id="btnPlusScore1" layoutX="474.0" layoutY="328.0" minHeight="25.0" minWidth="25.0" mnemonicParsing="false" onAction="#goChangeScore" text="+" AnchorPane.topAnchor="325.0" />
+            <Button fx:id="btnMinusScore1" layoutX="509.0" layoutY="325.0" minHeight="25.0" minWidth="25.0" mnemonicParsing="false" onAction="#goChangeScore" text="-" AnchorPane.topAnchor="325.0" />
+            <Button fx:id="btnNextSet" layoutX="560.0" layoutY="341.0" minHeight="30.0" minWidth="80.0" mnemonicParsing="false" onAction="#goNextSet" text="Next set" AnchorPane.topAnchor="340.0" />
+            <Button fx:id="btnMinusScore2" layoutX="509.0" layoutY="355.0" minHeight="25.0" minWidth="25.0" mnemonicParsing="false" onAction="#goChangeScore" text="-" AnchorPane.topAnchor="355.0" />
+            <Button fx:id="btnPlusScore2" layoutX="474.0" layoutY="365.0" minHeight="25.0" minWidth="25.0" mnemonicParsing="false" onAction="#goChangeScore" text="+" AnchorPane.topAnchor="355.0" />
+            <Button fx:id="btnAddCommand" layoutX="790.0" layoutY="261.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#goAddCommand" text="..." AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="260.0" />
+            <Button fx:id="btnAddCommand2" layoutX="790.0" layoutY="574.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#goAddCommand" text="..." AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="570.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

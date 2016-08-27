@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.controllers.PlayerAddUpdateDelete">
+   <children>
+      <Button fx:id="btnOk" layoutX="444.0" layoutY="293.0" minWidth="80.0" mnemonicParsing="false" onAction="#goOk" text="Ок" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="120.0" />
+      <Button fx:id="btnCancel" layoutX="454.0" layoutY="303.0" minWidth="80.0" mnemonicParsing="false" onAction="#goCancel" text="Отмена" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="30.0" />
+      <Label layoutX="41.0" layoutY="46.0" text="Фамилия" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="40.0">
+         <font>
+            <Font name="Calibri Light" size="15.0" />
+         </font></Label>
+      <Label layoutX="51.0" layoutY="56.0" text="Имя" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="75.0">
+         <font>
+            <Font name="Calibri Light" size="15.0" />
+         </font></Label>
+      <Label layoutX="61.0" layoutY="66.0" text="Отчество" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="110.0">
+         <font>
+            <Font name="Calibri Light" size="15.0" />
+         </font></Label>
+      <Label layoutX="71.0" layoutY="76.0" text="Игровой номер" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="145.0">
+         <font>
+            <Font name="Calibri Light" size="15.0" />
+         </font></Label>
+      <TextField fx:id="tfSurname" layoutX="146.0" layoutY="28.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="35.0" />
+      <TextField fx:id="tfName" layoutX="156.0" layoutY="38.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="70.0" />
+      <TextField fx:id="tfPatronymic" layoutX="128.0" layoutY="98.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="105.0" />
+      <Label fx:id="lblNameWindow" alignment="BOTTOM_LEFT" layoutX="38.0" layoutY="14.0" prefHeight="22.0" prefWidth="256.0" text="Label" textAlignment="CENTER" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0">
+         <font>
+            <Font name="Calibri Light" size="18.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="cbNumber" layoutX="128.0" layoutY="151.0" prefWidth="80.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="140.0" />
+   </children>
+</AnchorPane>
