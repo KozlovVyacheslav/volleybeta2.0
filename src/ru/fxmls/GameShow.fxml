@@ -59,7 +59,7 @@
                   <TableColumn prefWidth="75.0" text="Подача">
                      <columns>
                         <TableColumn fx:id="clmTotServe" minWidth="-1.0" prefWidth="50.0" text="Тот" />
-                        <TableColumn fx:id="clmErroeServe" minWidth="-1.0" prefWidth="50.0" text="Ошб" />
+                        <TableColumn fx:id="clmErrorServe" minWidth="-1.0" prefWidth="50.0" text="Ошб" />
                         <TableColumn fx:id="clmPointsServe" prefWidth="50.0" text="Очк" />
                      </columns>
                   </TableColumn>
@@ -67,7 +67,7 @@
                      <columns>
                         <TableColumn fx:id="clmTotReception" prefWidth="50.0" text="Тот" />
                         <TableColumn fx:id="clmErrorReception" prefWidth="50.0" text="Ошб" />
-                        <TableColumn fx:id="clmNiceReseption" prefWidth="50.0" text="Отл" />
+                        <TableColumn fx:id="clmNiceReception" prefWidth="50.0" text="Отл" />
                      </columns>
                   </TableColumn>
                   <TableColumn prefWidth="75.0" text="Атака">
@@ -114,7 +114,7 @@
                   <TableColumn prefWidth="75.0" text="Подача">
                      <columns>
                         <TableColumn fx:id="clmTotServe1" minWidth="-1.0" prefWidth="50.0" text="Тот" />
-                        <TableColumn fx:id="clmErroeServe1" minWidth="-1.0" prefWidth="50.0" text="Ошб" />
+                        <TableColumn fx:id="clmErrorServe1" minWidth="-1.0" prefWidth="50.0" text="Ошб" />
                         <TableColumn fx:id="clmPointsServe1" prefWidth="50.0" text="Очк" />
                      </columns>
                   </TableColumn>
@@ -122,7 +122,7 @@
                      <columns>
                         <TableColumn fx:id="clmTotReception1" prefWidth="50.0" text="Тот" />
                         <TableColumn fx:id="clmErrorReception1" prefWidth="50.0" text="Ошб" />
-                        <TableColumn fx:id="clmNiceReseption1" prefWidth="50.0" text="Отл" />
+                        <TableColumn fx:id="clmNiceReception1" prefWidth="50.0" text="Отл" />
                      </columns>
                   </TableColumn>
                   <TableColumn prefWidth="75.0" text="Атака">

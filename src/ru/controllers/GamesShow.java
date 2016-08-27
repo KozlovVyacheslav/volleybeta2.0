@@ -1,5 +1,6 @@
 package ru.controllers;
 
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -19,7 +20,9 @@ import javafx.scene.layout.AnchorPane;
 import ru.abstracts.MainController;
 import ru.main.Main;
 import ru.objects.Game2_0;
+import ru.objects.Stat;
 import ru.sql_controllers.SQLGame;
+import ru.sql_controllers.SQLStat;
 
 import java.sql.Date;
 import java.sql.SQLException;
@@ -71,11 +74,11 @@ public class GamesShow extends MainController{
     @FXML private TableColumn clmName;
     @FXML private TableColumn clmPoints;
     @FXML private TableColumn clmTotServe;
-    @FXML private TableColumn clmErroeServe;
+    @FXML private TableColumn clmErrorServe;
     @FXML private TableColumn clmPointsServe;
     @FXML private TableColumn clmTotReception;
     @FXML private TableColumn clmErrorReception;
-    @FXML private TableColumn clmNiceReseption;
+    @FXML private TableColumn clmNiceReception;
     @FXML private TableColumn clmTotAttack;
     @FXML private TableColumn clmErrorAttack;
     @FXML private TableColumn clmPointsAttack;
@@ -88,11 +91,11 @@ public class GamesShow extends MainController{
     @FXML private TableColumn clmName1;
     @FXML private TableColumn clmPoints1;
     @FXML private TableColumn clmTotServe1;
-    @FXML private TableColumn clmErroeServe1;
+    @FXML private TableColumn clmErrorServe1;
     @FXML private TableColumn clmPointsServe1;
     @FXML private TableColumn clmTotReception1;
     @FXML private TableColumn clmErrorReception1;
-    @FXML private TableColumn clmNiceReseption1;
+    @FXML private TableColumn clmNiceReception1;
     @FXML private TableColumn clmTotAttack1;
     @FXML private TableColumn clmErrorAttack1;
     @FXML private TableColumn clmPointsAttack1;
@@ -100,7 +103,9 @@ public class GamesShow extends MainController{
     @FXML private TableColumn clmBlock1;
 
     private ObservableList<Game2_0> games = FXCollections.observableArrayList();
+    private ObservableList<Stat> stats = FXCollections.observableArrayList();
     private SQLGame sqlGame = new SQLGame();
+    private SQLStat sqlStat = new SQLStat();
     private Game2_0 game;
     private int id_cup;
     private int numberSet = 0;
@@ -132,6 +137,34 @@ public class GamesShow extends MainController{
         btnEdit.setDisable(true);
         btnSave.setDisable(true);
 
+        clmName.setCellValueFactory(new PropertyValueFactory<Stat, String>("name_player"));
+        clmSurname.setCellValueFactory(new PropertyValueFactory<Stat, String>("surname_player"));
+        clmPoints.setCellValueFactory(new PropertyValueFactory<Stat, Integer>("points"));
+        clmTotServe.setCellValueFactory(new PropertyValueFactory<Stat, Integer>("tot_serve"));
+        clmErrorServe.setCellValueFactory(new PropertyValueFactory<Stat, Integer>("error_serve"));
+        clmPointsServe.setCellValueFactory(new PropertyValueFactory<Stat, Integer>("points_serve"));
+        clmTotReception.setCellValueFactory(new PropertyValueFactory<Stat, Integer>("tot_reception"));
+        clmErrorReception.setCellValueFactory(new PropertyValueFactory<Stat, Integer>("error_reception"));
+        clmNiceReception.setCellValueFactory(new PropertyValueFactory<Stat, Integer>("nice_reception"));
+        clmTotAttack.setCellValueFactory(new PropertyValueFactory<Stat, Integer>("tot_attack"));
+        clmErrorAttack.setCellValueFactory(new PropertyValueFactory<Stat, Integer>("error_attack"));
+        clmPointsAttack.setCellValueFactory(new PropertyValueFactory<Stat, Integer>("points_attack"));
+        clmBlock.setCellValueFactory(new PropertyValueFactory<Stat, Integer>("block"));
+
+        clmName1.setCellValueFactory(new PropertyValueFactory<Stat, String>("name_player"));
+        clmSurname1.setCellValueFactory(new PropertyValueFactory<Stat, String>("surname_player"));
+        clmPoints1.setCellValueFactory(new PropertyValueFactory<Stat, Integer>("points"));
+        clmTotServe1.setCellValueFactory(new PropertyValueFactory<Stat, Integer>("tot_serve"));
+        clmErrorServe1.setCellValueFactory(new PropertyValueFactory<Stat, Integer>("error_serve"));
+        clmPointsServe1.setCellValueFactory(new PropertyValueFactory<Stat, Integer>("points_serve"));
+        clmTotReception1.setCellValueFactory(new PropertyValueFactory<Stat, Integer>("tot_reception"));
+        clmErrorReception1.setCellValueFactory(new PropertyValueFactory<Stat, Integer>("error_reception"));
+        clmNiceReception1.setCellValueFactory(new PropertyValueFactory<Stat, Integer>("nice_reception"));
+        clmTotAttack1.setCellValueFactory(new PropertyValueFactory<Stat, Integer>("tot_attack"));
+        clmErrorAttack1.setCellValueFactory(new PropertyValueFactory<Stat, Integer>("error_attack"));
+        clmPointsAttack1.setCellValueFactory(new PropertyValueFactory<Stat, Integer>("points_attack"));
+        clmBlock1.setCellValueFactory(new PropertyValueFactory<Stat, Integer>("block"));
+
         clmCommand1.setCellValueFactory(new PropertyValueFactory<Game2_0, String>("name_command"));
         clmCommand2.setCellValueFactory(new PropertyValueFactory<Game2_0, String>("name_command2"));
         clmDate.setCellValueFactory(new PropertyValueFactory<Game2_0, Date>("date"));
@@ -148,7 +181,22 @@ public class GamesShow extends MainController{
                 if (mouseEvent.getButton().equals(MouseButton.PRIMARY)) {
                     if (mouseEvent.getClickCount() == 2) {
                         System.out.println("Double clicked");
+                        stats.clear();
+                        tblCommand.refresh();
+                        tblCommand1.refresh();
                         game = (Game2_0) tblGames.getSelectionModel().getSelectedItem();
+                        System.out.println(game);
+                        System.out.println(game.getId());
+                        try {
+                            sqlStat.Connection();
+                            sqlStat.select(stats);
+
+                            tblCommand.setItems(stats.filtered(s -> s.getId_command() == game.getId_command() && s.getId_game() == game.getId()));
+                            tblCommand1.setItems(stats.filtered(s -> s.getId_command() == game.getId_command2() && s.getId_game() == game.getId()));
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        }
+
                         lblCommand1.setText(game.getName_command());
                         lblCommand2.setText(game.getName_command2());
                         for (int i = 0; i < 5; i++) {
@@ -167,11 +215,93 @@ public class GamesShow extends MainController{
     // добавить к статам
     public void goPlusStat(ActionEvent actionEvent) {
         System.out.println("goPlus");
+        if (((Button)actionEvent.getSource()).getId().equalsIgnoreCase("btnPlusStat1")) {
+            if (tblCommand.getSelectionModel().getSelectedItem() == null) return;
+            ObservableValue value = tblCommand.getFocusModel().getFocusedCell().getTableColumn().getCellObservableValue(tblCommand.getSelectionModel().getSelectedIndex());
+            System.out.println(tblCommand.getFocusModel().getFocusedCell().getTableColumn().getId());
+            System.out.println(tblCommand.getFocusModel().getFocusedCell().getTableColumn().getCellObservableValue(tblCommand.getSelectionModel().getSelectedIndex()));
+            switch (tblCommand.getFocusModel().getFocusedCell().getTableColumn().getId()) {
+                case "clmPoints": ((Stat)tblCommand.getSelectionModel().getSelectedItem()).setPoints( (int) value.getValue() + 1 ); break;
+                case "clmTotServe": ((Stat)tblCommand.getSelectionModel().getSelectedItem()).setTot_serve( (int) value.getValue() + 1 ); break;
+                case "clmErrorServe": ((Stat)tblCommand.getSelectionModel().getSelectedItem()).setError_serve( (int) value.getValue() + 1 ); break;
+                case "clmPointsServe": ((Stat)tblCommand.getSelectionModel().getSelectedItem()).setPoints_serve( (int) value.getValue() + 1 ); break;
+                case "clmTotReception": ((Stat)tblCommand.getSelectionModel().getSelectedItem()).setTot_reception( (int) value.getValue() + 1 ); break;
+                case "clmErrorReception": ((Stat)tblCommand.getSelectionModel().getSelectedItem()).setError_reception( (int) value.getValue() + 1 ); break;
+                case "clmNiceReception": ((Stat)tblCommand.getSelectionModel().getSelectedItem()).setNice_reception( (int) value.getValue() + 1 ); break;
+                case "clmTotAttack": ((Stat)tblCommand.getSelectionModel().getSelectedItem()).setTot_attack( (int) value.getValue() + 1 ); break;
+                case "clmErrorAttack": ((Stat)tblCommand.getSelectionModel().getSelectedItem()).setError_attack( (int) value.getValue() + 1 ); break;
+                case "clmPointsAttack": ((Stat)tblCommand.getSelectionModel().getSelectedItem()).setPoints_attack( (int) value.getValue() + 1 ); break;
+                case "clmBlock": ((Stat)tblCommand.getSelectionModel().getSelectedItem()).setBlock( (int) value.getValue() + 1 ); break;
+            }
+            tblCommand.refresh();
+        }
+        else if (((Button)actionEvent.getSource()).getId().equalsIgnoreCase("btnPlusStat2")) {
+            if (tblCommand1.getSelectionModel().getSelectedItem() == null) return;
+            ObservableValue value = tblCommand1.getFocusModel().getFocusedCell().getTableColumn().getCellObservableValue(tblCommand1.getSelectionModel().getSelectedIndex());
+            System.out.println(tblCommand1.getFocusModel().getFocusedCell().getTableColumn().getId());
+            System.out.println(tblCommand1.getFocusModel().getFocusedCell().getTableColumn().getCellObservableValue(tblCommand1.getSelectionModel().getSelectedIndex()));
+            switch (tblCommand1.getFocusModel().getFocusedCell().getTableColumn().getId()) {
+                case "clmPoints1": ((Stat)tblCommand1.getSelectionModel().getSelectedItem()).setPoints((int) value.getValue() + 1); break;
+                case "clmTotServe1": ((Stat)tblCommand1.getSelectionModel().getSelectedItem()).setTot_serve( (int) value.getValue() + 1 ); break;
+                case "clmErrorServe1": ((Stat)tblCommand1.getSelectionModel().getSelectedItem()).setError_serve( (int) value.getValue() + 1 ); break;
+                case "clmPointsServe1": ((Stat)tblCommand1.getSelectionModel().getSelectedItem()).setPoints_serve( (int) value.getValue() + 1 ); break;
+                case "clmTotReception1": ((Stat)tblCommand1.getSelectionModel().getSelectedItem()).setTot_reception( (int) value.getValue() + 1 ); break;
+                case "clmErrorReception1": ((Stat)tblCommand1.getSelectionModel().getSelectedItem()).setError_reception( (int) value.getValue() + 1 ); break;
+                case "clmNiceReception1": ((Stat)tblCommand1.getSelectionModel().getSelectedItem()).setNice_reception( (int) value.getValue() + 1 ); break;
+                case "clmTotAttack1": ((Stat)tblCommand1.getSelectionModel().getSelectedItem()).setTot_attack( (int) value.getValue() + 1 ); break;
+                case "clmErrorAttack1": ((Stat)tblCommand1.getSelectionModel().getSelectedItem()).setError_attack( (int) value.getValue() + 1 ); break;
+                case "clmPointsAttack1": ((Stat)tblCommand1.getSelectionModel().getSelectedItem()).setPoints_attack( (int) value.getValue() + 1 ); break;
+                case "clmBlock1": ((Stat)tblCommand1.getSelectionModel().getSelectedItem()).setBlock( (int) value.getValue() + 1 ); break;
+            }
+            tblCommand1.refresh();
+        }
     }
 
     // отнять у статов
     public void goMinusStat(ActionEvent actionEvent) {
         System.out.println("goMinus");
+        if (((Button)actionEvent.getSource()).getId().equalsIgnoreCase("btnMinusStat1")) {
+            if (tblCommand.getSelectionModel().getSelectedItem() == null) return;
+            ObservableValue value = tblCommand.getFocusModel().getFocusedCell().getTableColumn().getCellObservableValue(tblCommand.getSelectionModel().getSelectedIndex());
+            if ((int)value.getValue() == 0) return;
+            System.out.println(tblCommand.getFocusModel().getFocusedCell().getTableColumn().getId());
+            System.out.println(tblCommand.getFocusModel().getFocusedCell().getTableColumn().getCellObservableValue(tblCommand.getSelectionModel().getSelectedIndex()));
+            switch (tblCommand.getFocusModel().getFocusedCell().getTableColumn().getId()) {
+                case "clmPoints": ((Stat)tblCommand.getSelectionModel().getSelectedItem()).setPoints( (int) value.getValue() - 1 ); break;
+                case "clmTotServe": ((Stat)tblCommand.getSelectionModel().getSelectedItem()).setTot_serve( (int) value.getValue() - 1 ); break;
+                case "clmErrorServe": ((Stat)tblCommand.getSelectionModel().getSelectedItem()).setError_serve( (int) value.getValue() - 1 ); break;
+                case "clmPointsServe": ((Stat)tblCommand.getSelectionModel().getSelectedItem()).setPoints_serve( (int) value.getValue() - 1 ); break;
+                case "clmTotReception": ((Stat)tblCommand.getSelectionModel().getSelectedItem()).setTot_reception( (int) value.getValue() - 1 ); break;
+                case "clmErrorReception": ((Stat)tblCommand.getSelectionModel().getSelectedItem()).setError_reception( (int) value.getValue() - 1 ); break;
+                case "clmNiceReception": ((Stat)tblCommand.getSelectionModel().getSelectedItem()).setNice_reception( (int) value.getValue() - 1 ); break;
+                case "clmTotAttack": ((Stat)tblCommand.getSelectionModel().getSelectedItem()).setTot_attack( (int) value.getValue() - 1 ); break;
+                case "clmErrorAttack": ((Stat)tblCommand.getSelectionModel().getSelectedItem()).setError_attack( (int) value.getValue() - 1 ); break;
+                case "clmPointsAttack": ((Stat)tblCommand.getSelectionModel().getSelectedItem()).setPoints_attack( (int) value.getValue() - 1 ); break;
+                case "clmBlock": ((Stat)tblCommand.getSelectionModel().getSelectedItem()).setBlock( (int) value.getValue() - 1 ); break;
+            }
+            tblCommand.refresh();
+        }
+        else if (((Button)actionEvent.getSource()).getId().equalsIgnoreCase("btnMinusStat2")) {
+            if (tblCommand1.getSelectionModel().getSelectedItem() == null) return;
+            ObservableValue value = tblCommand1.getFocusModel().getFocusedCell().getTableColumn().getCellObservableValue(tblCommand1.getSelectionModel().getSelectedIndex());
+            if ((int)value.getValue() == 0) return;
+            System.out.println(tblCommand1.getFocusModel().getFocusedCell().getTableColumn().getId());
+            System.out.println(tblCommand1.getFocusModel().getFocusedCell().getTableColumn().getCellObservableValue(tblCommand1.getSelectionModel().getSelectedIndex()));
+            switch (tblCommand1.getFocusModel().getFocusedCell().getTableColumn().getId()) {
+                case "clmPoints1": ((Stat)tblCommand1.getSelectionModel().getSelectedItem()).setPoints( (int) value.getValue() - 1 ); break;
+                case "clmTotServe1": ((Stat)tblCommand1.getSelectionModel().getSelectedItem()).setTot_serve( (int) value.getValue() - 1 ); break;
+                case "clmErrorServe1": ((Stat)tblCommand1.getSelectionModel().getSelectedItem()).setError_serve( (int) value.getValue() - 1 ); break;
+                case "clmPointsServe1": ((Stat)tblCommand1.getSelectionModel().getSelectedItem()).setPoints_serve( (int) value.getValue() - 1 ); break;
+                case "clmTotReception1": ((Stat)tblCommand1.getSelectionModel().getSelectedItem()).setTot_reception( (int) value.getValue() - 1 ); break;
+                case "clmErrorReception1": ((Stat)tblCommand1.getSelectionModel().getSelectedItem()).setError_reception( (int) value.getValue() - 1 ); break;
+                case "clmNiceReception1": ((Stat)tblCommand1.getSelectionModel().getSelectedItem()).setNice_reception( (int) value.getValue() - 1 ); break;
+                case "clmTotAttack1": ((Stat)tblCommand1.getSelectionModel().getSelectedItem()).setTot_attack( (int) value.getValue() - 1 ); break;
+                case "clmErrorAttack1": ((Stat)tblCommand1.getSelectionModel().getSelectedItem()).setError_attack( (int) value.getValue() - 1 ); break;
+                case "clmPointsAttack1": ((Stat)tblCommand1.getSelectionModel().getSelectedItem()).setPoints_attack( (int) value.getValue() - 1 ); break;
+                case "clmBlock1": ((Stat)tblCommand1.getSelectionModel().getSelectedItem()).setBlock( (int) value.getValue() - 1 ); break;
+            }
+            tblCommand1.refresh();
+        }
     }
 
     // распечатать все данные об игре
@@ -197,6 +327,12 @@ public class GamesShow extends MainController{
         System.out.println("goEdit");
         btnSave.setDisable(true);
         btnEdit.setDisable(true);
+        try {
+            sqlStat.update(stats, game.getId());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        goClear(actionEvent);
     }
 
     // удалить игру
@@ -217,6 +353,9 @@ public class GamesShow extends MainController{
             lblScore1[i].setText("0");
             lblScore2[i].setText("0");
         }
+        stats.clear();
+        tblCommand.refresh();
+        tblCommand1.refresh();
         lblCommand1.setText("Команда 1");
         lblCommand2.setText("Команда 2");
     }

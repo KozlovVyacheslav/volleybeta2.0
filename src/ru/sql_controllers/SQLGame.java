@@ -31,7 +31,6 @@ public class SQLGame extends SQLController {
             games.get(games.size() - 1).setSet42(resultSet.getInt("SET_4"));
             games.get(games.size() - 1).setSet52(resultSet.getInt("SET_5"));
             games.get(games.size() - 1).toStringScore();
-
         }
     }
 
